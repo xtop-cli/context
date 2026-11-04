@@ -1,0 +1,7 @@
+target/
+pkg/
+out/
+node_modules/
+.DS_Store
+*.swp
+*.tmp

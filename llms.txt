@@ -1,0 +1,89 @@
+xtop-cli developer context
+==========================
+
+Derived documentation for the xtop-cli organization. Upstream repositories
+are authoritative. Flat checkout assumed at ~/repos/xtop-cli/.
+
+Root documents
+--------------
+README.md            Overview, scope, repository map, reading order.
+AGENTS.md            Operating rules for AI coding agents.
+conventions.md       Versions, dependencies, naming, contracts, CI, git rules.
+ecosystem.md         Architecture, dependency graph, integration modes.
+repositories.md      Repository inventory and workspace members.
+workflows.md         Cross-repo development, verification and release flows.
+current-state.md     Dated status snapshot and known gaps.
+
+Repository documents
+--------------------
+api/README.md                 Contract workspace: four crates.
+api/architecture.md           Crate graph, ownership, consumption, path deps.
+api/data-model.md             System model structs and snapshot lifecycle.
+api/plugin-contract.md        Plugin trait, context, capabilities, host.
+api/widget-contract.md        WidgetState, registrations, glyph helpers.
+api/extension-contract.md     Server-style extension protocol.
+api/effect-contract.md        Frame effect protocol.
+api/changes.md                Decision log and breaking changes.
+api/operations.md             Local CI, gates, publish checklist.
+
+xtop/README.md                Kernel overview.
+xtop/architecture.md          Module map, data flow, render pipeline.
+xtop/cli.md                   Commands, flags, environment variables.
+xtop/configuration.md         Config schema, persistence, asset seeding.
+xtop/theming.md               Theme format v2, roles, contrast, themes.
+xtop/layouts-and-widgets.md   Modes, presets, packs, runtime widgets.
+xtop/plugins-and-extensions.md Plugin/extension hosting and MCP.
+xtop/providers.md             Sysinfo provider and platform probes.
+xtop/operations.md            Build, test, audit, packaging, release checklist.
+
+widgets/README.md             Widget packs overview.
+widgets/architecture.md       Crate model, shared engine, registry, packs.
+widgets/widget-reference.md   Every widget and its layout options.
+widgets/authoring.md          Creating and testing a widget crate.
+widgets/operations.md         Local CI and install flow.
+
+layouts/README.md             Layout crate overview.
+layouts/schema.md             Full JSONC schema and tiling rules.
+layouts/authoring.md          Writing, validating and installing layouts.
+layouts/defaults.md           The ten embedded layouts.
+layouts/operations.md         Local CI and review checklist.
+
+plugins/README.md             Plugin workspace overview.
+plugins/architecture.md       Samurai plugin and workspace layout.
+plugins/samurai.md            Samurai action API reference.
+plugins/rules.md              Ten heuristic detection rules.
+plugins/runtime-widgets.md    Shared runtime widget model.
+plugins/wasm-widgets.md       WASM host, ABI, draw list, sandbox.
+plugins/external-widgets.md   External helper-process host.
+plugins/operations.md         Local CI, examples, security notes.
+
+extensions/README.md          Extension workspace overview.
+extensions/architecture.md    MCP extension architecture.
+extensions/mcp-protocol.md    JSON-RPC 2.0 wire protocol and tool table.
+extensions/operations.md      Build, test, adding an extension.
+
+effects/README.md             Effect workspace overview.
+effects/architecture.md       Contract and workspace layout.
+effects/catalog.md            Fade effect semantics.
+effects/authoring.md          Writing, testing and landing an effect.
+effects/operations.md         Local CI and release notes.
+
+web/README.md                 Site overview.
+web/architecture.md           Next.js export, docs pipeline, search, i18n.
+web/content.md                Docs mirror, translations, landing copy.
+web/operations.md             Build, docs sync, Pages deployment.
+
+resources/README.md           How to use agents and skills.
+resources/repos.md            Repository-to-path quick map.
+resources/agents/*.md         Role definitions for coding agents.
+resources/skills/*.md         Repeatable procedures.
+
+Hard rules
+----------
+- Upstream source wins over this context.
+- Contracts live only in api.
+- All crates stay at 0.1.0; MSRV 1.87; Rust edition 2021.
+- ratatui 0.30.2; serde 1; serde_json 1; no tokio/clap/chrono.
+- Rust repos use local CI only; no new GitHub Actions.
+- Never store secrets, tokens, keys or personal data here.
+- No emojis.
