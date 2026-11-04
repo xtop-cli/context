@@ -150,10 +150,12 @@ Renderers must read colors by role.
   `{ git = "https://github.com/xtop-cli/<repo>" }` without `rev` or `tag`.
   Temporary path dependencies and `[patch]` sections are development-only
   and must be removed before pushing.
-- Rust repositories have local CI only:
-  `./scripts/ci.sh [stage]`. Do not add GitHub Actions to them.
-- Exceptions: `xtop` has a roadmap-to-issues sync workflow, and `web` has a
-  GitHub Pages deployment workflow. Both are intentional.
+- Rust repositories use local CI as their primary gate:
+  `./scripts/ci.sh [stage]`. CI is being added gradually; do not add a new
+  workflow to a repository without an explicit decision.
+- Intentional workflows at this snapshot: `xtop` has the roadmap-to-issues
+  sync and a tag-triggered `release.yml`; `web` has the GitHub Pages
+  deployment workflow. The other Rust repositories have no workflows.
 - Never commit `Cargo.lock` in the library workspaces. The kernel and the
   web application may keep their lockfiles.
 

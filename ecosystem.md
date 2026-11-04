@@ -64,7 +64,7 @@ The split is recorded as phases F0 through F5 in `xtop/docs/multi-repo.md`:
 | F2 | done | samurai moved to `plugins`; MCP moved to `extensions` |
 | F3 | done | effect workspace and fade effect |
 | F4 | done | server-style extension contract and MCP |
-| F5 | pending | crates.io publication, tags, pinned dependencies, per-repo CI and kernel releases |
+| F5 | in progress | crates.io publication, tags, pinned dependencies, per-repo CI and kernel releases; the kernel release workflow exists, the rest is pending |
 
 ## Contract graph
 
@@ -156,4 +156,7 @@ stderr warning per unknown name per process.
 - The website is a static Next.js export deployed to GitHub Pages
 
 There are no tagged releases in the upstream repositories at the current
-snapshot, and no crates.io publication. Version strings remain `0.1.0`.
+snapshot, and no crates.io publication. Version strings remain `0.1.0`. A
+tag-triggered release workflow is in place for the kernel; the first `v*`
+tag is pending. The other Rust repositories still have no release
+automation.

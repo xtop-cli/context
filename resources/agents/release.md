@@ -19,7 +19,8 @@ state. This agent does not invent a release process that does not exist.
 - There are no upstream tags or GitHub releases.
 - Consumers use floating git dependencies.
 - Distribution is source-based plus the AUR `xtop-git` package.
-- There is no automated release pipeline for the Rust repositories.
+- The kernel has a tag-triggered release workflow
+  (`.github/workflows/release.yml`); the other Rust repositories do not.
 
 Do not describe a tag, a crates.io publication or a binary release as
 existing.
@@ -35,7 +36,9 @@ existing.
 6. If the AUR package is in scope, refresh it and verify `makepkg`.
 7. Sync docs into the website and verify the build.
 8. Update this context repository.
-9. Report the exact versions, commits and commands.
+9. If releasing the kernel, push a `v*` tag from `main` that matches
+   `Cargo.toml` and confirm the `release.yml` run succeeds.
+10. Report the exact versions, commits and commands.
 
 ## Guardrails
 

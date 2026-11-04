@@ -8,10 +8,11 @@ before acting on it.
 ## Versions
 
 - Every Rust crate reports `0.1.0`.
-- Kernel commit at snapshot: `cb17bb7` on `main` (35 commits).
+- Kernel commit at snapshot: `3d045c7` on `main` (37 commits).
 - AUR package `xtop-git` at snapshot: `r35.cb17bb7-1`.
 - No upstream repository has a release or tag at the snapshot except the
-  local AUR packaging repository, which has its own history.
+  local AUR packaging repository, which has its own history. The kernel
+  release workflow exists, but no `v*` tag has been pushed yet.
 - Website package `xtop-web` is private version `0.1.0`.
 
 ## Implemented
@@ -43,6 +44,9 @@ before acting on it.
 - CLI theme switching (`xtop --ct <theme>`) that running instances follow.
 - Local CI and structural audit scripts.
 - Roadmap-to-issues synchronization workflow.
+- Tag-triggered multi-platform release workflow: gate, six-target build
+  matrix, archive validation, `SHA256SUMS`, cosign keyless signature,
+  provenance attestations and GitHub Release publishing.
 - Install and uninstall scripts for Linux and Windows.
 - AUR `xtop-git` packaging.
 
@@ -66,8 +70,10 @@ Contract and distribution:
 
 - The four `api` crates are not published on crates.io.
 - Consumer git dependencies are floating, not pinned to tags or revisions.
-- Repository tags and GitHub releases do not exist upstream.
-- Per-repo CI is local only; release automation is not implemented.
+- Repository tags and GitHub releases do not exist upstream yet.
+- CI is local only outside the kernel. The kernel has the roadmap sync and
+  the tag-triggered release workflow; the other Rust repositories have no
+  GitHub workflows and no release automation.
 
 Kernel and ecosystem:
 
@@ -89,8 +95,11 @@ Kernel and ecosystem:
 
 - Floating git dependencies mean a sibling change can reach consumers on
   the next fetch without a version bump or tag.
-- The kernel audit does not implement module dependency-cycle detection or
-  unused-public-item detection.
+- `scripts/audit.sh` currently fails: the `providers` area is 2823 lines,
+  above the 2400-line per-area budget. The audit also does not implement
+  module dependency-cycle detection or unused-public-item detection.
+- The release workflow requires the `release` environment; any required
+  reviewers must be configured in repository settings.
 - The `web` docs mirror is a manual sync. A stale mirror is possible until
   `scripts/sync-docs.sh` is run and the site is rebuilt.
 - Widget ids in layouts are not validated at parse time; `xtop layout

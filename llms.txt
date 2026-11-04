@@ -84,6 +84,6 @@ Hard rules
 - Contracts live only in api.
 - All crates stay at 0.1.0; MSRV 1.87; Rust edition 2021.
 - ratatui 0.30.2; serde 1; serde_json 1; no tokio/clap/chrono.
-- Rust repos use local CI only; no new GitHub Actions.
+- Rust repos keep local CI as the gate; CI is being added gradually.
 - Never store secrets, tokens, keys or personal data here.
 - No emojis.

@@ -49,7 +49,11 @@ Stages:
 - `test`;
 - `no-default`: check without default features.
 
-There is no GitHub CI. Do not add one.
+GitHub CI is being introduced gradually. Two workflows exist:
+`.github/workflows/roadmap-sync.yml` (issue synchronization) and
+`.github/workflows/release.yml` (tag-triggered release binaries). Local CI
+remains the gate for day-to-day changes; do not add a new workflow without
+an explicit decision.
 
 ## Structural audit
 
@@ -146,18 +150,54 @@ Then update the Spanish mirror and rebuild the site.
 - Checkboxes reference issue numbers.
 - Auto-commits contain `[roadmap-sync]` and are skipped to avoid loops.
 
+## Release workflow (tag-triggered)
+
+`.github/workflows/release.yml` runs on `v*` tags.
+
+Jobs:
+
+1. `gate` - full-history checkout; verifies the tag commit is an ancestor of
+   `origin/main`, verifies the tag version matches `Cargo.toml`, runs
+   `cargo test --locked` and `cargo check --locked --no-default-features`.
+2. `build` - builds `--release --locked --all-features` for six targets:
+   `x86_64-unknown-linux-gnu`, `aarch64-unknown-linux-gnu`,
+   `x86_64-unknown-linux-musl`, `x86_64-apple-darwin`,
+   `aarch64-apple-darwin` and `x86_64-pc-windows-msvc`.
+3. `checksums` - validates each archive contains `xtop`/`xtop.exe` and
+   writes `SHA256SUMS`.
+4. `sign` - keyless cosign signature of `SHA256SUMS` plus build provenance
+   attestations.
+5. `release` - re-verifies signature and checksums, then publishes the
+   GitHub Release with the archives, `SHA256SUMS` and
+   `SHA256SUMS.bundle`.
+
+Assets are named `xtop-<version>-<target>.tar.gz` (Unix) or `.zip`
+(Windows) and contain the binary plus `LICENSE`, `README.md` and
+`CHANGELOG.md`.
+
+The tag must be created from a commit merged into `main`:
+
+```
+git checkout main && git pull --ff-only
+git tag -a v0.1.0 -m "xtop v0.1.0"
+git push origin v0.1.0
+```
+
+The `release` job references the `release` environment; protection rules
+(required reviewers) are configured in repository settings, not in YAML.
+
 ## Release checklist
 
-There is no automated release pipeline yet.
-
 1. Confirm `scripts/ci.sh` passes on all default stages.
-2. Confirm `scripts/audit.sh` passes.
+2. Confirm `scripts/audit.sh` passes. It currently fails because the
+   `providers` area exceeds the 2400-line budget; resolve before tagging.
 3. Confirm a `--no-default-features` build passes.
 4. Confirm the installers still build.
 5. Confirm the AUR package builds at the new HEAD.
 6. Sync docs into the website and rebuild.
 7. Update this context repository.
 8. Record any policy change (versions, tags, publications) explicitly.
+9. Push the tag and confirm the `release.yml` run succeeds.
 
 ## Troubleshooting
 

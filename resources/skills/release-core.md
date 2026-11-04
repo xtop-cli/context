@@ -50,6 +50,26 @@ cargo build --release --all-features
 Do not run an installer that writes to `/usr/local/bin` unless the
 environment allows it.
 
+## 5b. Tag-triggered GitHub release
+
+The kernel has `.github/workflows/release.yml` on `v*` tags.
+
+1. Confirm the release commit is already merged into `main`.
+2. Confirm the tag version equals the `Cargo.toml` version.
+3. Create and push an annotated tag:
+
+```
+git checkout main && git pull --ff-only
+git tag -a v0.1.0 -m "xtop v0.1.0"
+git push origin v0.1.0
+```
+
+4. Watch the workflow: gate, six-target build, checksums, signature and
+   release publish.
+5. Confirm the release contains every expected asset plus `SHA256SUMS` and
+   `SHA256SUMS.bundle`.
+6. Never move or force-push a release tag; cut a new version instead.
+
 ## 6. AUR package
 
 If the package is in scope:

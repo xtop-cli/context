@@ -209,8 +209,9 @@ The prebuild step regenerates the search index.
 
 ## 11. Release and distribution
 
-There is no automated release pipeline for the upstream repositories. The
-current distribution paths are:
+Release publishing is being introduced gradually. The kernel has a
+tag-triggered GitHub Actions workflow; the other Rust repositories still
+have no release automation. The current distribution paths are:
 
 1. **Source install**: `install.sh` (Linux) and `install.ps1` (Windows).
 2. **Cargo**: `cargo install --git https://github.com/xtop-cli/xtop
@@ -219,6 +220,31 @@ current distribution paths are:
    `-git` package does not require upstream tags, but its `PKGBUILD` must
    be refreshed when the source URL, build script or metadata changes.
 4. **Website**: pushing to `main` triggers the Pages workflow.
+5. **Prebuilt binaries**: pushing a `v*` tag triggers the kernel release
+   workflow.
+
+### Kernel release workflow
+
+`.github/workflows/release.yml` runs on `v*` tags:
+
+1. `gate` verifies the tag commit is on `main`, the tag matches
+   `Cargo.toml`, and tests pass.
+2. `build` produces `--all-features` binaries for linux gnu x86_64/aarch64,
+   linux musl x86_64, macOS x86_64/aarch64 and Windows x86_64 MSVC.
+3. `checksums`, `sign` and `release` validate the archives, write
+   `SHA256SUMS`, sign it with keyless cosign, attest provenance and publish
+   the GitHub Release.
+
+Create the tag from a commit merged into `main`:
+
+```
+git checkout main && git pull --ff-only
+git tag -a v0.1.0 -m "xtop v0.1.0"
+git push origin v0.1.0
+```
+
+The `release` environment can be protected with required reviewers in
+repository settings.
 
 Release checklist: `resources/skills/release-core.md`.
 

@@ -52,11 +52,13 @@ Issue triage should distinguish:
 
 ## Continuous integration
 
-- Rust repositories: local only. `scripts/ci.sh` is the gate. Do not add
-  GitHub Actions to them.
+- Rust repositories: local CI (`scripts/ci.sh`) remains the gate. CI is
+  being introduced gradually; do not add a workflow to a repository without
+  an explicit decision.
+- `xtop`: the roadmap sync workflow keeps `ROADMAP.md` in sync with issues,
+  and `release.yml` builds and publishes binaries on `v*` tags.
 - `web`: GitHub Actions builds the static export and deploys to GitHub
   Pages from `main`.
-- `xtop`: the roadmap sync workflow is the only automation.
 
 A merge is acceptable only when the relevant local CI has been run by the
 author. Reviewers should not assume a workflow ran.

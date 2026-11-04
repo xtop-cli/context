@@ -33,7 +33,8 @@ hosting.
 
 ## Guardrails
 
-- Do not add a GitHub workflow.
+- Do not add a new GitHub workflow without an explicit decision. The kernel
+  currently runs the roadmap sync and the tag-triggered release workflow.
 - Do not add `tokio`, `clap` or `chrono`.
 - Do not bypass plugin capability checks.
 - Do not resample the system in the render path.

@@ -51,7 +51,8 @@ states MIT. Snapshot date: 2026-11-04.
   `no-default`.
 - Structural audit: `./scripts/audit.sh`.
 - Automation: `.github/workflows/roadmap-sync.yml` syncs `ROADMAP.md` with
-  GitHub issues. It is the only workflow in this repository.
+  GitHub issues; `.github/workflows/release.yml` builds multi-platform
+  binaries and publishes a GitHub Release on `v*` tags.
 - Packaging: `install.sh`, `install.ps1`, `uninstall.sh`, `uninstall.ps1`,
   `PKGBUILD` (AUR `xtop-git`).
 - Key docs: `docs/features.md`, `docs/usage.md`, `docs/configuration.md`,

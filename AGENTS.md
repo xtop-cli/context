@@ -28,9 +28,11 @@ ecosystem and this context repository.
   contracts only when a real consumer exists.
 - Respect the version policy: every crate stays at `0.1.0` for now. Do not
   bump versions unless the human explicitly requests a release.
-- Do not add GitHub Actions workflows to the Rust repositories. Their CI is
-  local by design (`scripts/ci.sh`). Only `web` (Pages deploy) and `xtop`
-  (roadmap sync) have workflows.
+- CI is being introduced gradually. The Rust repositories keep local CI as
+  their gate (`scripts/ci.sh`); do not add a new workflow without an
+  explicit decision. Current intentional workflows: `xtop` has the
+  roadmap-to-issues sync and a tag-triggered `release.yml`; `web` has the
+  Pages deployment workflow.
 - Do not commit generated build output, `Cargo.lock` files in library
   workspaces, `node_modules`, `target/`, `pkg/` or `out/`.
 

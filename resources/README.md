@@ -53,5 +53,7 @@ single task.
 - No emojis.
 - No speculative API surface.
 - All crates stay at `0.1.0`.
-- Rust repositories use local CI only.
+- Rust repositories keep local CI as their gate; CI is being added
+  gradually (currently the kernel release workflow and roadmap sync, plus
+  the web deployment).
 - Never claim a check passed without running it.
