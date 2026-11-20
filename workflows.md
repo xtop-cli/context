@@ -26,7 +26,8 @@ cd ~/repos/xtop-cli/<repo>
 ./scripts/ci.sh
 ```
 
-The kernel additionally has a structural audit:
+The kernel `ci.sh` also runs the structural audit as its final stage. The
+audit can still be run alone:
 
 ```
 cd ~/repos/xtop-cli/xtop
@@ -131,10 +132,11 @@ Detailed procedure: `resources/skills/widget-authoring.md`.
    next to fills, or fills absorbing a sub-100 percentage remainder.
 4. Validate with `xtop layout check <file>`.
 5. For a personal layout, copy it into the platform layouts directory.
-6. For a community layout, add it under `layouts/custom/`, open a pull
-   request, and verify the embedded defaults order is untouched.
+6. For a community layout, add it under `layouts/custom/`, add its
+   `catalog.json` entry in the kernel repository (version, author, license,
+   URL and SHA-256), and open both pull requests.
 7. Run `cd ~/repos/xtop-cli/layouts && ./scripts/ci.sh`.
-8. Update `layouts/defaults.md` if a default changed.
+8. Update `layouts/defaults.md` and the kernel `catalog.json` if a shipped layout changed.
 
 Detailed procedure: `resources/skills/layout-authoring.md`.
 
@@ -151,7 +153,7 @@ Detailed procedure: `resources/skills/layout-authoring.md`.
    `cd ~/repos/xtop-cli/plugins && ./scripts/ci.sh`.
 7. Install into the kernel with `xtop plugin install <name>`.
 8. Add the registration line under the feature guard in the kernel's
-   `src/commands/share/bootstrap.rs`.
+   `src/core/bootstrap.rs`.
 9. Document actions and permissions.
 
 Detailed procedure: `resources/skills/plugin-authoring.md`.

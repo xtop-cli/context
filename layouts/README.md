@@ -16,10 +16,10 @@ layouts/
   src/
     lib.rs        public exports
     model.rs      LayoutDef, LayoutNode, LayoutArea, constraints
-    loader.rs     JSONC stripping, parsing, merging, embedded defaults
+    loader.rs     JSONC stripping, parsing, merging, base layout
     mode.rs       LayoutMode and size-based degradation
   layouts/
-    default/      10 embedded layouts
+    default/      10 JSONC layout files (only Dashboard is embedded)
     custom/       community layouts
   docs/
 ```
@@ -42,24 +42,26 @@ Three detail presets:
 - `detail_network`
 - `detail_processes`
 
-The first seven map to modes in fixed order. The three presets are appended
-after them and are addressed by name.
+Only `Dashboard` is embedded in the crate. The other mode layouts and the
+three presets are catalog assets addressed by name.
 
 ## Personalization model
 
-1. Defaults are compiled into the binary and copied as templates into the
-   user layouts directory on first run.
-2. A user file whose `name` matches a default replaces it in place and keeps
-   its palette slot.
-3. A file with a new name is appended as an additional layout.
-4. Community layouts live under `layouts/custom/` and are installed with
-   `xtop layout install <name>` or copied manually.
+1. The embedded Dashboard is copied as a template into the user layouts
+   directory on first run.
+2. Every other shipped layout is installed from `catalog.json` with
+   `xtop layout download <name>` (or `xtop config download --all`).
+3. A user file whose `name` matches an installed layout replaces it in
+   place.
+4. A file with a new name is appended as an additional layout.
+5. Community layouts live under `layouts/custom/`; they are catalog assets
+   installed with `xtop layout download <name>` or copied manually.
 
 ## Documents
 
 - `schema.md` - the complete JSONC schema and tiling rules.
 - `authoring.md` - writing, validating, activating and sharing layouts.
-- `defaults.md` - structure of the ten embedded layouts.
+- `defaults.md` - structure of the shipped layout files and the base/ catalog split.
 - `operations.md` - local CI, adding a default, review checklist.
 
 ## Local CI

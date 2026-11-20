@@ -24,7 +24,7 @@ hosting.
    kernel-owned. Renderers belong in `widgets`; layouts in `layouts`;
    plugins in `plugins`; extensions in `extensions`; effects in `effects`;
    shared types in `api`.
-4. Keep `cfg(target_os)` inside `providers/sysinfo/platform/`.
+4. Keep `cfg(target_os)` inside `src/core/providers/sysinfo/platform/`.
 5. Keep files under 600 lines and avoid TODO/FIXME markers.
 6. Guard for a missing snapshot and for tiny terminal areas.
 7. Never fabricate hardware readings.

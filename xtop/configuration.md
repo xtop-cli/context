@@ -138,24 +138,23 @@ the runtime owns:
 
 User values such as `history_points` and `style` are preserved.
 
-## Asset seeding
+## Base assets and downloads
 
-On startup, before the TUI or asset-dependent commands, the kernel seeds
-templates into the config directory:
+On startup, before the TUI or asset-dependent commands, the kernel creates
+only the embedded base files:
 
-- 12 theme templates from `assets/themes/`;
-- 10 layout templates from the layouts crate.
+- `themes/x.jsonc` from the embedded `x` theme;
+- `layouts/dashboard.jsonc` from the embedded Dashboard layout.
 
-Seeding is guarded by a marker file `.xtop_initialized` whose content is the
-asset version. At the current snapshot the version is `5`.
+`xtop --gen-config` additionally creates `config.json`. Files are written
+only when missing; user edits are never overwritten.
 
-Rules:
-
-- a file is written only when missing;
-- user edits are never overwritten;
-- a version bump re-seeds only missing files;
-- renamed templates leave older copies in place, and those older copies
-  behave as user layouts if their name no longer matches a built-in.
+Every other theme or layout is external. The official `catalog.json` lists
+each asset's id, display name, category, version, author, license, file, raw
+URL and SHA-256. Install assets with `xtop theme download`, `xtop layout
+download` or `xtop config download`; metadata is recorded in `assets.json`.
+`XTOP_CATALOG_URL` overrides the catalog source. `--force` replaces an
+existing file; without it downloads skip existing files.
 
 ## Effect selection
 

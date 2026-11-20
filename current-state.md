@@ -1,6 +1,6 @@
 # Current state
 
-Dated snapshot: 2026-11-04. This document records what is implemented,
+Dated snapshot: 2026-11-20 (kernel architecture refactor). This document records what is implemented,
 what is deliberately deferred and which gaps are known. Treat it as a
 status report, not as a specification. Verify against the repositories
 before acting on it.
@@ -8,7 +8,8 @@ before acting on it.
 ## Versions
 
 - Every Rust crate reports `0.1.0`.
-- Kernel commit at snapshot: `3d045c7` on `main` (37 commits).
+- Kernel commit at snapshot: `0500176` on `main` (45 commits); the
+  core/cli/tui refactor is in the working tree, not committed.
 - AUR package `xtop-git` at snapshot: `r35.cb17bb7-1`.
 - No upstream repository has a release or tag at the snapshot except the
   local AUR packaging repository, which has its own history. The kernel
@@ -28,12 +29,14 @@ before acting on it.
 
 ### Kernel (`xtop`)
 
-- Single-crate binary organized into `commands`, `config`, `plugins`,
-  `providers`, `state`, `theme` and `ui`.
+- Single package with one library and one binary, organized into `core`
+  (config, providers, state, theme, plugins, shared bootstrap), `cli` and
+  `tui`; platform TUI backends live under `tui/unix` and `tui/windows`.
 - CPU, memory, swap, storage, disk I/O, network, process, battery and GPU
   monitoring with platform probes on Linux, macOS and Windows and honest
   empty states elsewhere.
-- Twelve themes in format v2 with WCAG contrast normalization.
+- Twelve themes in format v2 with WCAG contrast normalization. Only the
+  base `x` theme is embedded; the other eleven are catalog assets.
 - Seven layout modes plus three Detail presets, user and community layouts.
 - Widget packs with per-widget and per-instance options.
 - Command palette, help overlay, process search, sorting with direction,
@@ -41,7 +44,10 @@ before acting on it.
 - Plugin system with capability enforcement and error isolation.
 - MCP extension exposed as `xtop mcp`.
 - Optional effects and runtime widget hosts.
-- CLI theme switching (`xtop --ct <theme>`) that running instances follow.
+- Layered CLI help (`xtop --help`, `xtop <group> --help`,
+  `xtop <group> <command> --help`), theme/layout management
+  (`xtop theme`, `xtop layout`), `--change-theme`, `--gen-config` and
+  live TUI following of persisted theme/layout changes.
 - Local CI and structural audit scripts.
 - Roadmap-to-issues synchronization workflow.
 - Tag-triggered multi-platform release workflow: gate, six-target build
@@ -60,7 +66,9 @@ before acting on it.
 - External helper-process host with line-delimited JSON and per-response
   timeouts.
 - Base widget pack with 11 widgets and an alternative blocks pack.
-- Ten embedded layouts including dense detail presets.
+- Only the primary Dashboard layout is embedded; other mode layouts and the
+  dense Detail presets are catalog assets installed with
+  `xtop layout download`.
 - Web site with mirrored English docs, Spanish translations, search index
   and GitHub Pages deployment.
 
@@ -95,9 +103,11 @@ Kernel and ecosystem:
 
 - Floating git dependencies mean a sibling change can reach consumers on
   the next fetch without a version bump or tag.
-- `scripts/audit.sh` currently fails: the `providers` area is 2823 lines,
-  above the 2400-line per-area budget. The audit also does not implement
-  module dependency-cycle detection or unused-public-item detection.
+- `scripts/audit.sh` passes: the provider areas are 572 lines plus 2273
+  lines under `platform/`, both below the 2400-line budgets. The audit now
+  also enforces the `core`/`cli`/`tui` dependency direction; module
+  dependency-cycle detection and unused-public-item detection remain
+  unimplemented.
 - The release workflow requires the `release` environment; any required
   reviewers must be configured in repository settings.
 - The `web` docs mirror is a manual sync. A stale mirror is possible until

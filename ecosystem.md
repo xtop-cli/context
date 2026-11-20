@@ -55,6 +55,10 @@ plugins inside. Each customization axis was extracted so that:
 - the kernel stays a thin host for metrics, state, layout rendering and
   command dispatch.
 
+Inside the single package the kernel keeps a strict `core` <- `cli`/`tui`
+module layering: `core` is frontend-agnostic, `cli` and `tui` consume it, and
+the CLI reaches the TUI only through `cli/commands/tui.rs`.
+
 The split is recorded as phases F0 through F5 in `xtop/docs/multi-repo.md`:
 
 | Phase | State | Content |

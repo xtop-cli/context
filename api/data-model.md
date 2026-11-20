@@ -40,7 +40,7 @@ load_avg, uptime, cpu_temp, disk_io, batteries, gpus, sys_info
 ## Provider population
 
 The kernel's `SysinfoProvider` populates the snapshot. Platform probes under
-`providers/sysinfo/platform/` provide the extras.
+`src/core/providers/sysinfo/platform/` provide the extras.
 
 | Struct | Source |
 |---|---|

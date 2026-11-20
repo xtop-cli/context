@@ -75,7 +75,7 @@ xtop-plugin-<name> = { git = "https://github.com/<owner>/<repo>", optional = tru
 plugin-<name> = ["dep:xtop-plugin-<name>"]
 ```
 
-Then add the registration line in `src/commands/share/bootstrap.rs` under
+Then add the registration line in `src/core/bootstrap.rs` under
 `#[cfg(feature = "plugin-<name>")]`.
 
 ## 8. Enable

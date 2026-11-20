@@ -1,16 +1,18 @@
 # Repository inventory
 
 Current inventory of the `xtop-cli` organization. All repositories use the
-`main` branch. Every Rust repository is MIT licensed; the `web` repository
-does not ship a LICENSE file at this snapshot, although the site footer
-states MIT. Snapshot date: 2026-11-04.
+`main` branch. Every repository is licensed under GPL-3.0-or-later. The
+component repositories (`plugins`, `widgets`, `layouts`, `extensions` and
+`effects`) carry a license note: Xscriptor-authored material is GPL, while
+user contributions remain under the license chosen by their authors.
+Snapshot date: 2026-11-20.
 
 ## Summary
 
 | Repository | Kind | Role | Workspace members | Docs entry |
 |---|---|---|---|---|
 | `api` | Rust workspace | contracts | 4 crates | `api/README.md` |
-| `xtop` | Rust single crate | kernel application and CLI | 1 binary | `xtop/README.md` |
+| `xtop` | Rust package (lib + bin) | kernel core, CLI and TUI | 1 library + 1 binary | `xtop/README.md` |
 | `widgets` | Rust workspace | widget renderer packs | aggregator + 11 widget crates + core + blocks | `widgets/README.md` |
 | `layouts` | Rust single crate | layout model and shipped layouts | 1 crate | `layouts/README.md` |
 | `plugins` | Rust workspace | plugins and runtime widget hosts | 6 crates | `plugins/README.md` |
@@ -38,7 +40,7 @@ states MIT. Snapshot date: 2026-11-04.
 ## xtop
 
 - URL: `https://github.com/xtop-cli/xtop`
-- Role: kernel application, CLI, providers, state, theme, UI.
+- Role: kernel application; `core` (providers, state, config, theme, plugins), `cli` commands and `tui` frontend with platform terminal backends.
 - Package: `xtop` version `0.1.0`, binary `xtop`.
 - Runtime dependencies: `crossterm 0.29`, `ratatui 0.30.2`,
   `sysinfo 0.39`, `anyhow 1`, `serde 1`, `serde_json 1`, `toml 0.8`.
@@ -86,8 +88,9 @@ states MIT. Snapshot date: 2026-11-04.
 - Package: `xtop-layout` version `0.1.0`.
 - Dependencies: `serde`, `serde_json`; no ratatui and no api dependency.
 - Shipped layouts:
-  - `layouts/default/` with ten embedded layouts: seven mode-bound plus
-    three `detail_*` presets.
+  - `layouts/default/` with ten JSONC layout files: seven mode layouts plus
+    three `detail_*` presets. Only Dashboard is embedded; the rest are
+    catalog assets.
   - `layouts/custom/` with community layouts.
 - Local CI: `./scripts/ci.sh`.
 - Key docs: `docs/layout-schema.md`, `docs/authoring.md`,

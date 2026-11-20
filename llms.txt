@@ -45,7 +45,7 @@ widgets/operations.md         Local CI and install flow.
 layouts/README.md             Layout crate overview.
 layouts/schema.md             Full JSONC schema and tiling rules.
 layouts/authoring.md          Writing, validating and installing layouts.
-layouts/defaults.md           The ten embedded layouts.
+layouts/defaults.md           The shipped layout files and base/catalog split.
 layouts/operations.md         Local CI and review checklist.
 
 plugins/README.md             Plugin workspace overview.

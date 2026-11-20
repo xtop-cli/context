@@ -4,9 +4,11 @@
 with ratatui, samples with sysinfo and platform probes, and hosts a modular
 ecosystem of widgets, layouts, plugins, extensions and effects.
 
-The kernel is a single crate, not a workspace. It is a thin host: metrics,
-state, layout rendering, theme handling, configuration and command dispatch
-live here; renderers and layouts come from sibling repositories.
+The kernel is a single package (one library and one binary), not a
+workspace. It is a thin host split into `core` (metrics, state, config,
+theme, plugins), `cli` (dispatch and commands) and `tui` (rendering, input and
+platform terminal backends); renderers and layouts come from sibling
+repositories.
 
 ## Features
 
@@ -19,14 +21,13 @@ live here; renderers and layouts come from sibling repositories.
 - Battery probes on Linux, macOS and Windows.
 - GPU monitoring through nvidia-smi on any platform, plus Linux sysfs for
   AMD/Intel; honest empty states where no API exists.
-- Twelve themes in JSONC with WCAG contrast normalization.
-- Seven layout modes plus three Detail presets, custom layouts and
-  fullscreen mode.
+- Twelve themes in JSONC with WCAG contrast normalization: the base `x` theme is embedded and the rest are catalog assets.
+- Layout modes plus three Detail presets, custom layouts and fullscreen mode; Dashboard is embedded and the rest are catalog assets.
 - Configurable alert thresholds and keybindings.
-- Persistent configuration and automatic asset seeding.
+- Persistent configuration, base asset seeding and catalog-driven theme/layout downloads.
 - Plugin system with capability enforcement.
 - MCP server for AI agents.
-- CLI theme switching that running instances follow.
+- CLI theme/layout management (`xtop theme`, `xtop layout`, `--change-theme`, `--gen-config`) that running instances follow.
 - Optional runtime widgets: sandboxed WASM modules or helper processes.
 
 ## Install
@@ -84,9 +85,9 @@ cargo run --release
 
 Upstream user documentation lives in `xtop/docs/`:
 
-- `features.md`, `installation.md`, `usage.md`, `configuration.md`,
-  `customization.md`, `colors.md`, `plugin.md`, `multi-repo.md`,
-  `design.md`.
+- `features.md`, `installation.md`, `usage.md`, `commands.md`, `core.md`,
+  `configuration.md`, `customization.md`, `colors.md`, `plugin.md`,
+  `multi-repo.md`, `design.md`.
 - `ROADMAP.md`, `CHANGELOG.md`, `CONTRIBUTING.md`.
 
 ## Default and optional features
@@ -112,4 +113,4 @@ MCP, the blocks pack, effects or runtime widget hosts.
 
 ## License
 
-MIT.
+GPL-3.0-or-later. See [`LICENSE`](../LICENSE).

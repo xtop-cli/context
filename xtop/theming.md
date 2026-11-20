@@ -76,8 +76,9 @@ Twelve themes:
 `miami`, `oslo`, `paris`, `praha`, `tokio`.
 
 - `x` is compiled in as the startup fallback.
-- All twelve are embedded as seeding templates and written to the themes
-  directory on first run.
+- Only `x` is embedded as the base theme. The other eleven are catalog
+  assets installed with `xtop theme download <name>` and recorded in
+  `assets.json`.
 - `helsinki` and `madrid` are light themes; `london` and `berlin` are
   grayscale-oriented.
 
@@ -100,8 +101,9 @@ Twelve themes:
 
 - `t` and `T` cycle forward and backward in the TUI.
 - The command palette offers a Themes page.
-- `xtop --ct <name>` persists the theme and running instances follow it
-  within one tick.
+- `xtop --change-theme <name>` (or `xtop theme set <name>`) persists the
+  theme; running instances follow it within one tick. `--ct` remains a
+  deprecated alias.
 
 ## Authoring guidance
 

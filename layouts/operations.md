@@ -13,18 +13,18 @@ cd ~/repos/xtop-cli/layouts
 
 No GitHub workflow exists in this repository.
 
-## Adding an embedded default
+## Adding a shipped layout
 
-Only do this when the layout belongs in every installation.
-
-1. Add the file under `layouts/default/`.
-2. Append it to `DEFAULT_LAYOUT_SOURCES` in `src/loader.rs`.
-3. Never insert before the first seven slots.
+1. Add the JSONC file under `layouts/default/` (official) or
+   `layouts/custom/` (community).
+2. Only add it to `DEFAULT_LAYOUT_SOURCES` in `src/loader.rs` if it must be
+   embedded in every installation. The base set is currently just
+   Dashboard.
+3. Add or update the catalog entry in the kernel `catalog.json` with id,
+   display name, category, version, author, license, URL and SHA-256.
 4. If the file is a mode layout, update the mode mapping and its tests.
-5. Add or update tiling tests.
+5. Add or update tiling and parsing tests.
 6. Update `docs/layout-schema.md`, `docs/authoring.md` and this context.
-7. Bump the kernel asset seed version so existing installs receive the new
-   template.
 
 ## Adding a community layout
 
@@ -44,15 +44,15 @@ Only do this when the layout belongs in every installation.
 - widget ids exist in a standard kernel build, or the layout documents the
   required plugin/pack;
 - options are documented in the widgets repository;
-- no change to the first seven embedded slots;
+- the catalog checksum matches the shipped file;
 - CI passes.
 
 ## Kernel-side asset seeding
 
-The kernel writes the embedded defaults into the user layouts directory on
-first run and after an asset version bump. Existing files are never
-overwritten. When a template is renamed, older copies remain and behave as
-user layouts if their name no longer matches a built-in.
+The kernel writes the embedded Dashboard into the user layouts directory on
+first run or with `xtop --gen-config`. Existing files are never overwritten.
+Every other layout is a catalog asset installed with
+`xtop layout download <name>` and recorded in `assets.json`.
 
 ## Compatibility notes
 

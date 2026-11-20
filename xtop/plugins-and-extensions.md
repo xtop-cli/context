@@ -15,9 +15,9 @@ Four kernel components:
 | Component | Location | Purpose |
 |---|---|---|
 | contract types | `xtop-plugin-api` | trait, manifest, context, capabilities, model |
-| `PluginManager` | `src/plugins/manager.rs` | registration, tick and key dispatch, execution, shutdown |
-| `HostState` impl | `src/plugins/host.rs` | live-state view plugins may touch |
-| `CompositeProvider` | `src/providers/composite.rs` | merge plugin data providers with the kernel provider |
+| `PluginManager` | `src/core/plugins/manager.rs` | registration, tick and key dispatch, execution, shutdown |
+| `HostState` impl | `src/core/plugins/host.rs` | live-state view plugins may touch |
+| `CompositeProvider` | `src/core/providers/composite.rs` | merge plugin data providers with the kernel provider |
 
 Plugins never depend on kernel types. They see state only through
 `PluginContext`, which wraps `HostState`.
@@ -64,7 +64,7 @@ Optional:
 - `plugin-wasm` pulls the WASM runtime host.
 - `plugin-external` pulls the external process host.
 
-Registration happens in `src/commands/share/bootstrap.rs` under feature
+Registration happens in `src/core/bootstrap.rs` under feature
 guards.
 
 ## Plugin install flow
