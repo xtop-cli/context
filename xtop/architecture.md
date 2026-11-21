@@ -70,6 +70,7 @@ src/
       system.rs            monitoring/diagnostics/completions help
     commands/
       mod.rs
+      addon.rs             unified theme/layout addon management
       completions.rs       shell completion scripts
       config.rs            config download/generate/get/set/list/reset/path
       download.rs          shared download flag parsing/reporting

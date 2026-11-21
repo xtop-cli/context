@@ -60,12 +60,32 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 | `xtop config list` | Print the effective config as JSON. |
 | `xtop config reset --yes` | Restore config.json defaults. |
 | `xtop config path` | Print config and asset directories. |
+| `xtop addon list` | List installed themes and layouts. |
+| `xtop addon available` | List the installable asset catalog. |
+| `xtop addon install <name\|--all>` | Install themes or layouts. |
+| `xtop addon download <name\|--all>` | Alias for `addon install`. |
+| `xtop addon path` | Print theme and layout directories. |
 | `xtop plugin list` | List plugins wired into the kernel manifest. |
 | `xtop plugin install <name\|url>` | Add a plugin git dependency and feature. |
 | `xtop plugin scaffold <name>` | Create a plugin crate under `plugins-dev/`. |
 | `xtop widget list` | List widget packs wired into the kernel. |
 | `xtop widget install <name\|url\|path>` | Add a widget pack dependency and feature. |
 | `xtop widget scaffold <name>` | Create a single-widget pack under `widgets-dev/`. |
+
+## Addons
+
+Themes and layouts are installable addons. `xtop addon
+list|available|install|download|path` unifies them, and `--all` installs the
+whole catalog. The plural `xtop themes` / `xtop layouts` group names are
+aliases for the singular groups.
+
+`process_tree` (`Process Tree`) is an opt-in layout addon: it enables the
+processes widget's `tree` option using `ProcessInfo::parent_pid`. It is not
+embedded and is installed with `xtop layout download process_tree` or
+`xtop addon install process_tree`.
+
+Plugins and widget packs remain compile-time developer installs under
+`xtop plugin` and `xtop widget`.
 
 ## External assets and catalog
 

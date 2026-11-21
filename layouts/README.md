@@ -56,6 +56,8 @@ three presets are catalog assets addressed by name.
 4. A file with a new name is appended as an additional layout.
 5. Community layouts live under `layouts/custom/`; they are catalog assets
    installed with `xtop layout download <name>` or copied manually.
+6. `process_tree` (`Process Tree`) is an opt-in custom layout: it enables
+   the processes widget's `tree` option and is not part of the default set.
 
 ## Documents
 
