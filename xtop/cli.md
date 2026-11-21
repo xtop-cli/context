@@ -22,6 +22,7 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 |---|---|
 | `--change-theme <theme>` | Persist the active theme; running TUI instances follow within one tick. `--ct` is a deprecated alias. |
 | `--gen-config` | Create `config.json`, `themes/x.jsonc` and `layouts/dashboard.jsonc` when missing. |
+| `-V`, `--version` | Print the package version. |
 | `-h`, `--help` | Print global help. |
 
 ## Commands
@@ -29,16 +30,24 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 | Command | Behavior |
 |---|---|
 | `xtop` | Start the TUI system monitor. |
+| `xtop status [--json]` | One-shot system snapshot. |
+| `xtop processes [--json] [--sort] [--limit]` | One-shot process list. |
+| `xtop watch [--jsonl] [--interval] [--count]` | Periodic status snapshots. |
+| `xtop info [--json]` | Build, feature, path and tool information. |
+| `xtop doctor [--json]` | Diagnose config, base assets, manifest and tools. |
+| `xtop completions <shell>` | Print bash/zsh/fish/PowerShell completions. |
 | `xtop mcp` | Seed base assets, then start the MCP server on stdio. |
 | `xtop theme list` | List installed themes with source/metadata. |
 | `xtop theme available` | Fetch the catalog and list themes. |
 | `xtop theme current` | Print the persisted theme. |
+| `xtop theme show <theme>` | Show theme source, metadata and palette. |
 | `xtop theme set <theme>` | Persist the active theme. |
 | `xtop theme download <theme\|--all>` | Install themes from the catalog. |
 | `xtop theme path` | Print the user themes directory. |
 | `xtop layout list` | List effective installed layouts. |
 | `xtop layout available` | Fetch the catalog and list layouts. |
 | `xtop layout current` | Print the persisted layout. |
+| `xtop layout show <layout>` | Show layout source, metadata and JSONC. |
 | `xtop layout set <layout>` | Persist the active layout. |
 | `xtop layout download <layout\|--all>` | Install layouts from the catalog. |
 | `xtop layout install <layout\|--all>` | Alias for `layout download`. |
@@ -46,6 +55,10 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 | `xtop layout path` | Print the user layouts directory. |
 | `xtop config download <name\|--all>` | Download a theme or layout by name. |
 | `xtop config generate` | Create the base config and assets. |
+| `xtop config get <key.path>` | Print one effective config value. |
+| `xtop config set <key.path> <value>` | Validate and update a config value. |
+| `xtop config list` | Print the effective config as JSON. |
+| `xtop config reset --yes` | Restore config.json defaults. |
 | `xtop config path` | Print config and asset directories. |
 | `xtop plugin list` | List plugins wired into the kernel manifest. |
 | `xtop plugin install <name\|url>` | Add a plugin git dependency and feature. |

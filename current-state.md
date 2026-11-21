@@ -45,9 +45,11 @@ before acting on it.
 - MCP extension exposed as `xtop mcp`.
 - Optional effects and runtime widget hosts.
 - Layered CLI help (`xtop --help`, `xtop <group> --help`,
-  `xtop <group> <command> --help`), theme/layout management
-  (`xtop theme`, `xtop layout`), `--change-theme`, `--gen-config` and
-  live TUI following of persisted theme/layout changes.
+  `xtop <group> <command> --help`), headless monitoring (`status`,
+  `processes`, `watch`), diagnostics (`info`, `doctor`), config management
+  (`config get/set/list/reset`), theme/layout management, `--version`,
+  shell completions, `--change-theme`, `--gen-config` and live TUI
+  following of persisted theme/layout changes.
 - Local CI and structural audit scripts.
 - Roadmap-to-issues synchronization workflow.
 - Tag-triggered multi-platform release workflow: gate, six-target build

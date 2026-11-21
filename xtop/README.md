@@ -27,7 +27,8 @@ repositories.
 - Persistent configuration, base asset seeding and catalog-driven theme/layout downloads.
 - Plugin system with capability enforcement.
 - MCP server for AI agents.
-- CLI theme/layout management (`xtop theme`, `xtop layout`, `--change-theme`, `--gen-config`) that running instances follow.
+- Headless CLI monitoring (`status`, `processes`, `watch`, `info`, `doctor`) with JSON output.
+- CLI theme/layout/config management (`xtop theme`, `xtop layout`, `xtop config`, `--change-theme`, `--gen-config`) that running instances follow.
 - Optional runtime widgets: sandboxed WASM modules or helper processes.
 
 ## Install

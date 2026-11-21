@@ -62,15 +62,28 @@ src/
       loader.rs            JSONC loading and themes directory
       contrast.rs          WCAG normalization
   cli/
-    mod.rs                 argument dispatch
-    help.rs                global and per-command help text
+    mod.rs                 argument dispatch and --version
+    help/
+      mod.rs               global help and shared helpers
+      assets.rs            theme/layout/config help
+      dev.rs               plugin/widget help
+      system.rs            monitoring/diagnostics/completions help
     commands/
       mod.rs
-      config.rs            config download/generate/path
+      completions.rs       shell completion scripts
+      config.rs            config download/generate/get/set/list/reset/path
+      download.rs          shared download flag parsing/reporting
       layout.rs            layout list/set/download/check/path
       mcp.rs               MCP server command
+      monitor.rs           shared headless sampling and rendering
+      processes.rs         one-shot process list
+      status.rs            one-shot system snapshot
+      system.rs            info and doctor
       theme.rs             theme list/set/download/available/path
       tui.rs               the single cli -> tui launch edge
+      watch.rs             periodic status snapshots
+    dev/
+      mod.rs               developer tooling boundary
       plugins/             list/install/scaffold
       widget/              list/install/scaffold
   tui/
@@ -111,7 +124,7 @@ src/
 | Area | Responsibility |
 |---|---|
 | `core` | configuration, providers, live state, themes, plugins and shared bootstrap; frontend-agnostic |
-| `cli` | argument dispatch, layered help, headless commands and source-management tools; consumes `core` |
+| `cli` | argument dispatch, layered help, headless monitoring, config/asset management and source-management tools; consumes `core` |
 | `tui` | terminal lifecycle, input, screen composition, layout rendering, overlays and effects; consumes `core` |
 | `tui/unix`, `tui/windows`, `tui/fallback` | platform terminal backends selected by `tui/terminal.rs` |
 
