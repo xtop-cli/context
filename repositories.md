@@ -5,7 +5,7 @@ Current inventory of the `xtop-cli` organization. All repositories use the
 component repositories (`plugins`, `widgets`, `layouts`, `extensions` and
 `effects`) carry a license note: Xscriptor-authored material is GPL, while
 user contributions remain under the license chosen by their authors.
-Snapshot date: 2026-11-20.
+Snapshot date: 2026-11-21.
 
 ## Summary
 

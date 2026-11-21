@@ -1,6 +1,6 @@
 # Current state
 
-Dated snapshot: 2026-11-20 (kernel architecture refactor). This document records what is implemented,
+Dated snapshot: 2026-11-21 (release 0.1.1). This document records what is implemented,
 what is deliberately deferred and which gaps are known. Treat it as a
 status report, not as a specification. Verify against the repositories
 before acting on it.
@@ -9,7 +9,7 @@ before acting on it.
 
 - Release `0.1.1` ships `xtop`, `xtop-layout` and the widget workspace at
   `0.1.1`. The contract and remaining ecosystem crates stay at `0.1.0`.
-- Kernel commit at snapshot: update after the release PR merge.
+- Kernel commit at snapshot: `328d411` on `main` (release 0.1.1 merged).
 - AUR package `xtop-git` at snapshot: `r35.cb17bb7-1`.
 - No upstream repository has a release or tag at the snapshot except the
   local AUR packaging repository, which has its own history. The kernel
