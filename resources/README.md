@@ -52,7 +52,7 @@ single task.
 - No secrets, tokens, personal data or machine-specific paths.
 - No emojis.
 - No speculative API surface.
-- All crates stay at `0.1.0`.
+- Release `0.1.1`: `xtop`, `xtop-layout` and the widget workspace. Contracts and other crates remain `0.1.0`.
 - Rust repositories keep local CI as their gate; CI is being added
   gradually (currently the kernel release workflow and roadmap sync, plus
   the web deployment).

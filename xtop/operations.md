@@ -185,8 +185,8 @@ The tag must be created from a commit merged into `main`:
 
 ```
 git checkout main && git pull --ff-only
-git tag -a v0.1.0 -m "xtop v0.1.0"
-git push origin v0.1.0
+git tag -a v0.1.1 -m "xtop v0.1.1"
+git push origin v0.1.1
 ```
 
 The `release` job references the `release` environment; protection rules

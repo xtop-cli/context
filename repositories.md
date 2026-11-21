@@ -41,7 +41,7 @@ Snapshot date: 2026-11-20.
 
 - URL: `https://github.com/xtop-cli/xtop`
 - Role: kernel application; `core` (providers, state, config, theme, plugins), `cli` commands and `tui` frontend with platform terminal backends.
-- Package: `xtop` version `0.1.0`, binary `xtop`.
+- Package: `xtop` version `0.1.1`, binary `xtop`.
 - Runtime dependencies: `crossterm 0.29`, `ratatui 0.30.2`,
   `sysinfo 0.39`, `anyhow 1`, `serde 1`, `serde_json 1`, `toml 0.8`.
 - Ecosystem dependencies: api contracts, widgets, layouts, and optional
@@ -85,7 +85,7 @@ Snapshot date: 2026-11-20.
 
 - URL: `https://github.com/xtop-cli/layouts`
 - Role: layout model, JSONC loader, layout modes and shipped layouts.
-- Package: `xtop-layout` version `0.1.0`.
+- Package: `xtop-layout` version `0.1.1`.
 - Dependencies: `serde`, `serde_json`; no ratatui and no api dependency.
 - Shipped layouts:
   - `layouts/default/` with ten JSONC layout files: seven mode layouts plus

@@ -160,7 +160,8 @@ stderr warning per unknown name per process.
 - The website is a static Next.js export deployed to GitHub Pages
 
 There are no tagged releases in the upstream repositories at the current
-snapshot, and no crates.io publication. Version strings remain `0.1.0`. A
+snapshot, and no crates.io publication. Version strings remain `0.1.0`
+for the contracts and `0.1.1` for the kernel/layout/widget release line. A
 tag-triggered release workflow is in place for the kernel; the first `v*`
 tag is pending. The other Rust repositories still have no release
 automation.

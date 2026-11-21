@@ -60,8 +60,8 @@ The kernel has `.github/workflows/release.yml` on `v*` tags.
 
 ```
 git checkout main && git pull --ff-only
-git tag -a v0.1.0 -m "xtop v0.1.0"
-git push origin v0.1.0
+git tag -a v0.1.1 -m "xtop v0.1.1"
+git push origin v0.1.1
 ```
 
 4. Watch the workflow: gate, six-target build, checksums, signature and

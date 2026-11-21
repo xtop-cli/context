@@ -5,10 +5,10 @@ that violates one of these rules is incorrect even if it compiles.
 
 ## Version policy
 
-- Every crate reports version `0.1.0`. The ecosystem is deliberately kept at
-  an early version while the contracts settle.
-- Do not bump crate versions for feature work. A release process may change
-  this policy later; it has not changed yet.
+- Release `0.1.1` ships `xtop`, `xtop-layout` and the widget workspace at
+  `0.1.1`. The contract and remaining ecosystem crates stay at `0.1.0` until
+  their own release decision.
+- Do not bump crate versions for feature work outside a release.
 - `rust-version = "1.87"` is declared in every crate manifest (workspace
   level plus per-member inheritance where applicable). Rust edition is
   `2021`. The edition 2024 sweep is deferred.

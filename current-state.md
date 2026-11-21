@@ -7,9 +7,9 @@ before acting on it.
 
 ## Versions
 
-- Every Rust crate reports `0.1.0`.
-- Kernel commit at snapshot: `0500176` on `main` (45 commits); the
-  core/cli/tui refactor is in the working tree, not committed.
+- Release `0.1.1` ships `xtop`, `xtop-layout` and the widget workspace at
+  `0.1.1`. The contract and remaining ecosystem crates stay at `0.1.0`.
+- Kernel commit at snapshot: update after the release PR merge.
 - AUR package `xtop-git` at snapshot: `r35.cb17bb7-1`.
 - No upstream repository has a release or tag at the snapshot except the
   local AUR packaging repository, which has its own history. The kernel
