@@ -28,6 +28,7 @@ repositories.
 - Plugin system with capability enforcement.
 - MCP server for AI agents.
 - Headless CLI monitoring (`status`, `processes`, `watch`, `info`, `doctor`) with JSON output.
+- Self-update through xpm, pacman, cargo or the standalone binary installer (`xtop update`).
 - CLI theme/layout/config management (`xtop theme`, `xtop layout`, `xtop config`, `--change-theme`, `--gen-config`) that running instances follow.
 - Optional runtime widgets: sandboxed WASM modules or helper processes.
 

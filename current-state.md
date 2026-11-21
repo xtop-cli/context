@@ -48,9 +48,9 @@ before acting on it.
   `xtop <group> <command> --help`), headless monitoring (`status`,
   `processes`, `watch`), diagnostics (`info`, `doctor`), config management
   (`config get/set/list/reset`), theme/layout management, `--version`,
-  shell completions, addon management (`xtop addon`, `--all`),
-  `--change-theme`, `--gen-config` and live TUI following of persisted
-  theme/layout changes.
+  shell completions, self-update (`xtop update` with medium detection),
+  addon management (`xtop addon`, `--all`), `--change-theme`,
+  `--gen-config` and live TUI following of persisted theme/layout changes.
 - Processes widget has an opt-in `tree` option; the `Process Tree` layout
   ships as a downloadable custom layout, not a default.
 - Local CI and structural audit scripts.

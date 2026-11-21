@@ -36,6 +36,7 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 | `xtop info [--json]` | Build, feature, path and tool information. |
 | `xtop doctor [--json]` | Diagnose config, base assets, manifest and tools. |
 | `xtop completions <shell>` | Print bash/zsh/fish/PowerShell completions. |
+| `xtop update [options]` | Update through xpm, pacman, cargo or the binary installer. |
 | `xtop mcp` | Seed base assets, then start the MCP server on stdio. |
 | `xtop theme list` | List installed themes with source/metadata. |
 | `xtop theme available` | Fetch the catalog and list themes. |
@@ -71,6 +72,21 @@ only forwards to `xtop::cli::run()`). It does not use a CLI framework.
 | `xtop widget list` | List widget packs wired into the kernel. |
 | `xtop widget install <name\|url\|path>` | Add a widget pack dependency and feature. |
 | `xtop widget scaffold <name>` | Create a single-widget pack under `widgets-dev/`. |
+
+## Self-update
+
+`xtop update` detects the medium that installed the running binary:
+
+- `xpm`: owner from `xpm query --owner`, update with `xpm install --needed`.
+- `pacman`: owner from `pacman -Qoq`, update with `pacman -S --needed`.
+- `cargo`: cargo bin directory or `cargo install --list`, update with
+  `cargo install --git ... --locked --force`.
+- `binary`: official prebuilt installer for the current platform, into the
+  current binary directory.
+
+Flags: `--check`, `--dry-run`, `--method`, `--yes`, `--force`,
+`--all-features`, `--version` and `--json`. Package-manager commands use
+`sudo` when needed and never write config outside the platform config dir.
 
 ## Addons
 

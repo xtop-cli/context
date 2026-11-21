@@ -82,6 +82,7 @@ src/
       system.rs            info and doctor
       theme.rs             theme list/set/download/available/path
       tui.rs               the single cli -> tui launch edge
+      update.rs            self-update with installation-medium detection
       watch.rs             periodic status snapshots
     dev/
       mod.rs               developer tooling boundary
