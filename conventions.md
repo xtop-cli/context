@@ -5,10 +5,10 @@ that violates one of these rules is incorrect even if it compiles.
 
 ## Version policy
 
-- Every crate reports version `0.1.0`. The ecosystem is deliberately kept at
-  an early version while the contracts settle.
-- Do not bump crate versions for feature work. A release process may change
-  this policy later; it has not changed yet.
+- Release `0.1.1` ships `xtop`, `xtop-layout` and the widget workspace at
+  `0.1.1`. The contract and remaining ecosystem crates stay at `0.1.0` until
+  their own release decision.
+- Do not bump crate versions for feature work outside a release.
 - `rust-version = "1.87"` is declared in every crate manifest (workspace
   level plus per-member inheritance where applicable). Rust edition is
   `2021`. The edition 2024 sweep is deferred.
@@ -68,6 +68,31 @@ Consequences:
   `xtop-plugin-samurai`; the MCP extension imports them instead of
   duplicating strings.
 
+## Licensing
+
+- Xscriptor-authored material in every repository is licensed under
+  `GPL-3.0-or-later`.
+- The component repositories (`plugins`, `widgets`, `layouts`, `extensions`
+  and `effects`) may host user contributions. Those contributions remain
+  under the license chosen by their authors; the repository `LICENSE`
+  carries the carve-out note.
+- Do not relicense user contributions. When adding third-party content,
+  record its license next to the contribution or in its package metadata.
+
+## External assets
+
+- Only the base `x` theme and the primary `Dashboard` layout are embedded in
+  the kernel/layout crate. Everything else is external.
+- Themes live in `<config>/themes/` and layouts in `<config>/layouts/`; both
+  are plain JSONC files.
+- The official `catalog.json` at the kernel repo root is the source of truth
+  for downloadable assets. Every entry carries `id`, display `name`,
+  `category` (layouts), `version`, `author`, `license`, `file`, `url` and
+  `sha256`.
+- Downloads must verify the checksum, validate the JSONC and write
+  atomically. `--force` is required to replace an existing file.
+- Installed metadata belongs in `<config>/assets.json`.
+
 ## Naming
 
 - Crates: `xtop-<area>-<name>`, for example `xtop-widget-cpu`,
@@ -114,9 +139,9 @@ Renderers must read colors by role.
 - A node is either a split (`direction` plus `areas`) or a widget leaf
   (`widget` plus optional `options`).
 - Sizes are a fixed integer, a percentage string, `"*"`, or omitted (fill).
-- The first seven embedded layouts map to the seven modes in fixed order.
-  Never renumber them. Extra layouts (the three `detail_*` presets and user
-  layouts) are appended after the modes and addressed by name.
+- Only the primary `Dashboard` layout is embedded. The other mode layouts,
+  the three `detail_*` presets and user layouts are external JSONC assets
+  resolved by name; do not depend on a fixed external file order.
 - Merging is by exact, case-sensitive `name`. A user file with a built-in
   name replaces that built-in in place and keeps its palette slot.
 - Tiling rules: pure percentage stacks must sum to 100; fixed lengths must
@@ -128,11 +153,18 @@ Renderers must read colors by role.
 
 - `cargo fmt` is mandatory. CI checks `cargo fmt --all -- --check`.
 - `cargo clippy --workspace --all-targets -- -D warnings` (or the
-  single-crate equivalent) must pass.
+  single-package equivalent) must pass.
 - Prefer small modules; the kernel audit fails a source file above 600
-  lines and warns above 300.
-- Keep `cfg(target_os)` confined to `src/providers/sysinfo/platform/` trees
-  in the kernel. The audit enforces zero occurrences elsewhere.
+  lines and warns above 300, and budgets each top-level area or `core`
+  sub-area at 2400 lines (`platform/` trees budgeted separately).
+- Keep `cfg(target_os)` confined to `*/platform/` trees in the kernel
+  (`core/config/platform/` and `core/providers/sysinfo/platform/`). The TUI
+  selects its terminal backend with `cfg(unix)`/`cfg(windows)` in
+  `tui/terminal.rs`; the backend entry points live under `tui/unix/` and
+  `tui/windows/`. The audit enforces zero `cfg(target_os)` elsewhere.
+- Respect the kernel layering: `core` never imports `cli` or `tui`; `tui`
+  never imports `cli`; the CLI touches the TUI only in
+  `src/cli/commands/tui.rs`. The audit enforces all three edges.
 - No `TODO`, `FIXME`, `XXX` or `HACK` markers in kernel source; the audit
   fails on them.
 - Public documentation comments (`//!` for modules) are expected in the

@@ -55,6 +55,10 @@ plugins inside. Each customization axis was extracted so that:
 - the kernel stays a thin host for metrics, state, layout rendering and
   command dispatch.
 
+Inside the single package the kernel keeps a strict `core` <- `cli`/`tui`
+module layering: `core` is frontend-agnostic, `cli` and `tui` consume it, and
+the CLI reaches the TUI only through `cli/commands/tui.rs`.
+
 The split is recorded as phases F0 through F5 in `xtop/docs/multi-repo.md`:
 
 | Phase | State | Content |
@@ -156,7 +160,8 @@ stderr warning per unknown name per process.
 - The website is a static Next.js export deployed to GitHub Pages
 
 There are no tagged releases in the upstream repositories at the current
-snapshot, and no crates.io publication. Version strings remain `0.1.0`. A
+snapshot, and no crates.io publication. Version strings remain `0.1.0`
+for the contracts and `0.1.1` for the kernel/layout/widget release line. A
 tag-triggered release workflow is in place for the kernel; the first `v*`
 tag is pending. The other Rust repositories still have no release
 automation.

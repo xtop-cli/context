@@ -61,7 +61,7 @@ server extension.
 
 - The kernel creates the extension and calls `run_server("mcp", ctx)`.
 - The kernel implements `ExtensionHost` for `AppState` in
-  `src/plugins/extension_host.rs`.
+  `src/core/plugins/extension_host.rs`.
 - The kernel maps `PluginError` onto `ExtensionError`.
 
 ## Related documents

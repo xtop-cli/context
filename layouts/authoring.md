@@ -81,7 +81,7 @@ does not crash the app; it simply does not appear.
 ## Activate
 
 - Copy the file into the user layouts directory and restart.
-- Cycle with `l`, or select it by name from the command palette.
+- Cycle with `l`, or select it by name from the command bar.
 - The active layout name is persisted in configuration.
 
 Seeded templates are copies of the defaults. Editing a seeded file is the
@@ -112,22 +112,26 @@ An unknown id renders an empty area and warns once.
 
 Below 40x8 the UI shows a terminal-too-small notice before layout logic.
 
-Mode slots 0-6 are fixed. Extras are appended and addressed by name. `l`
-cycles through modes, then presets, then user layouts, then wraps.
+Only Dashboard is embedded. Downloaded and user layouts are addressed by
+name. `l` cycles through the effective installed list in file order and
+wraps; there is no fixed slot contract for external layouts.
 
 ## Share a community layout
 
 1. Put `my_layout.jsonc` into `layouts/custom/`.
 2. Use a unique name and validate it.
-3. Open a pull request.
-4. Users install with `xtop layout install my_layout`.
+3. Add its catalog entry to the kernel `catalog.json` (version, author,
+   license, URL and SHA-256).
+4. Open both pull requests.
+5. Users install with `xtop layout download my_layout` (or the `install`
+   alias).
 
-`xtop layout install` sparse-clones the repository, scans `layouts/custom/`,
-matches by file stem or name, and copies the file into the user directory
-without overwriting an existing one.
+The downloader fetches the catalog, matches by id or display name, verifies
+the SHA-256 and the layout JSONC, and writes the file into the user
+directory atomically. It skips existing files unless `--force` is given.
 
 Users can also copy the file manually; community files are not read by the
-kernel at runtime until installed or copied.
+kernel at runtime until downloaded or copied.
 
 ## Checklist
 

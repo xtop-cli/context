@@ -4,7 +4,7 @@
 
 - personal layout: user config directory;
 - community layout: `layouts/custom/` plus a pull request;
-- embedded default: only when every installation should ship it.
+- embedded base: only Dashboard; every other layout is a catalog asset.
 
 ## 2. Write the file
 
@@ -69,16 +69,18 @@ Copy the file into the user layouts directory and restart:
 3. Update `layouts/custom/README.md` if it lists layouts.
 4. Run `cd ~/repos/xtop-cli/layouts && ./scripts/ci.sh`.
 5. Open a pull request.
-6. Users install with `xtop layout install <name>`.
+6. Users install with `xtop layout download <name>` (or the `install` alias).
 
-## 9. Embedded defaults
+## 9. Shipped layouts and catalog
 
-1. Append the file to `layouts/default/`.
-2. Append to `DEFAULT_LAYOUT_SOURCES`.
-3. Never renumber the first seven slots.
-4. Add tiling and registry tests.
-5. Bump the kernel asset seed version.
-6. Update `layouts/defaults.md` and upstream docs.
+1. Add the file to `layouts/default/` (official) or `layouts/custom/`
+   (community).
+2. Add it to `DEFAULT_LAYOUT_SOURCES` only if it must be embedded; the base
+   set is currently Dashboard only.
+3. Add the catalog entry in the kernel `catalog.json` with id, name,
+   category, version, author, license, URL and SHA-256.
+4. Add parsing, tiling and registry tests.
+5. Update `layouts/defaults.md` and upstream docs.
 
 ## Checklist
 

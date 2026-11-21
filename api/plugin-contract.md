@@ -211,7 +211,7 @@ serde_json = "1"
    `data_provider()`.
 5. Add tests using a `HostState` double.
 6. Wire the plugin into the kernel behind a Cargo feature and register it in
-   `src/commands/share/bootstrap.rs`.
+   `src/core/bootstrap.rs`.
 7. Document the actions, params and capabilities.
 
 The reference implementation is `xtop-plugin-samurai`.

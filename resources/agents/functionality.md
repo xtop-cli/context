@@ -30,7 +30,7 @@ Plugins:
 4. Add tests with a `HostState` double.
 5. Add the crate to the workspace and run CI.
 6. Wire into the kernel behind a feature and register it in
-   `src/commands/share/bootstrap.rs`.
+   `src/core/bootstrap.rs`.
 7. Document actions and params.
 
 Extensions:

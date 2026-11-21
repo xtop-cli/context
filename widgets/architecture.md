@@ -101,7 +101,7 @@ The smoke tests render every registered widget of both packs at 100x34,
 
 - an optional dependency;
 - a `widget-<name>` Cargo feature;
-- a pack-table row and registry arm in `src/ui/layout/pack_table.rs`.
+- a pack-table row and registry arm in `src/tui/layout/pack_table.rs`.
 
 The pack is not enabled by default. Enable the feature, rebuild and select
 the pack through the style configuration.

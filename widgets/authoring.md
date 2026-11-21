@@ -20,7 +20,7 @@ xtop-widget-core = { path = "../xtop-widget-core" }
 xtop-widget-core = { path = "../xtop-widget-core", features = ["testkit"] }
 ```
 
-Version stays `0.1.0` and inherits workspace fields.
+Version follows the widget workspace (`0.1.1` in release 0.1.1) and inherits workspace fields.
 
 ## 3. Implement render
 

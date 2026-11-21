@@ -20,7 +20,7 @@ api/
 Workspace facts:
 
 - resolver 2;
-- version `0.1.0`, edition 2021, license MIT, `rust-version = "1.87"`;
+- version `0.1.0`, edition 2021, license GPL-3.0-or-later, `rust-version = "1.87"`;
 - shared dependencies: `ratatui 0.30.2`, `serde 1` with derive,
   `serde_json 1`;
 - no `tokio`, `clap` or `chrono`.

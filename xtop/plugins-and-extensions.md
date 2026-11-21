@@ -15,9 +15,9 @@ Four kernel components:
 | Component | Location | Purpose |
 |---|---|---|
 | contract types | `xtop-plugin-api` | trait, manifest, context, capabilities, model |
-| `PluginManager` | `src/plugins/manager.rs` | registration, tick and key dispatch, execution, shutdown |
-| `HostState` impl | `src/plugins/host.rs` | live-state view plugins may touch |
-| `CompositeProvider` | `src/providers/composite.rs` | merge plugin data providers with the kernel provider |
+| `PluginManager` | `src/core/plugins/manager.rs` | registration, tick and key dispatch, execution, shutdown |
+| `HostState` impl | `src/core/plugins/host.rs` | live-state view plugins may touch |
+| `CompositeProvider` | `src/core/providers/composite.rs` | merge plugin data providers with the kernel provider |
 
 Plugins never depend on kernel types. They see state only through
 `PluginContext`, which wraps `HostState`.
@@ -30,10 +30,15 @@ Plugins never depend on kernel types. They see state only through
 - `handle_key` dispatches a key and returns true if a plugin consumed it.
 - `collect_data_providers` only includes plugins with `ReadSystemInfo`.
 - `collect_widgets` only includes plugins with `RenderWidgets`.
-- `execute` finds a plugin by id and calls its action API.
+- `execute` finds an enabled plugin by id and calls its action API.
+- `set_enabled` toggles a plugin, calls `on_enable`/`on_disable` and refreshes
+  providers/widgets; the disabled ids are persisted in `config.json`.
 - `disable_all` calls `on_disable` at shutdown.
 
 A failing plugin is logged and does not crash the kernel.
+
+The TUI command bar (`/` or `ctrl+p`) exposes a Plugins page that toggles the
+compiled plugins; the selection is restored on the next start.
 
 ## Capabilities
 
@@ -64,7 +69,7 @@ Optional:
 - `plugin-wasm` pulls the WASM runtime host.
 - `plugin-external` pulls the external process host.
 
-Registration happens in `src/commands/share/bootstrap.rs` under feature
+Registration happens in `src/core/bootstrap.rs` under feature
 guards.
 
 ## Plugin install flow

@@ -39,6 +39,7 @@ cd ~/repos/xtop-cli/xtop
 ./scripts/ci.sh check
 ./scripts/ci.sh test
 ./scripts/ci.sh no-default
+./scripts/ci.sh audit
 ```
 
 Stages:
@@ -47,7 +48,8 @@ Stages:
 - `clippy`: all targets, warnings denied;
 - `check`;
 - `test`;
-- `no-default`: check without default features.
+- `no-default`: check without default features;
+- `audit`: full structural audit (`./scripts/audit.sh`).
 
 GitHub CI is being introduced gradually. Two workflows exist:
 `.github/workflows/roadmap-sync.yml` (issue synchronization) and
@@ -65,12 +67,16 @@ cd ~/repos/xtop-cli/xtop
 Fails on:
 
 - `cfg(target_os)` outside `platform/` trees;
+- `core` references to `cli`/`tui`, `tui` references to `cli`, or `cli`
+  references to `tui` outside `cli/commands/tui.rs`;
 - files above 600 lines;
 - TODO/FIXME/XXX/HACK markers;
 - more than 30 wildcard re-exports;
-- more than 2400 lines per top-level area;
+- more than 2400 lines per top-level area or `core` sub-area
+  (`platform/` trees budgeted separately);
 - the dead pre-monocrate plugin tree;
-- a missing theme seed or a seed count other than 12.
+- a missing base theme seed, extra theme embeddings, or a missing root
+  `catalog.json`.
 
 ## Install and uninstall
 
@@ -179,8 +185,8 @@ The tag must be created from a commit merged into `main`:
 
 ```
 git checkout main && git pull --ff-only
-git tag -a v0.1.0 -m "xtop v0.1.0"
-git push origin v0.1.0
+git tag -a v0.1.1 -m "xtop v0.1.1"
+git push origin v0.1.1
 ```
 
 The `release` job references the `release` environment; protection rules
@@ -189,8 +195,8 @@ The `release` job references the `release` environment; protection rules
 ## Release checklist
 
 1. Confirm `scripts/ci.sh` passes on all default stages.
-2. Confirm `scripts/audit.sh` passes. It currently fails because the
-   `providers` area exceeds the 2400-line budget; resolve before tagging.
+2. Confirm `scripts/audit.sh` passes (including the core/cli/tui layering
+   checks and the per-area budgets).
 3. Confirm a `--no-default-features` build passes.
 4. Confirm the installers still build.
 5. Confirm the AUR package builds at the new HEAD.

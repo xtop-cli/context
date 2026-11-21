@@ -33,7 +33,7 @@ Keep:
 - `xtop-widget-core`;
 - `ratatui`.
 
-Version stays `0.1.0` and inherits workspace fields.
+Version follows the widget workspace (`0.1.1` in release 0.1.1) and inherits workspace fields.
 
 ## 4. Implement
 

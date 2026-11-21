@@ -15,7 +15,7 @@ state. This agent does not invent a release process that does not exist.
 
 ## Current reality
 
-- All crates are `0.1.0`.
+- Release `0.1.1` covers `xtop`, `xtop-layout` and widgets; contracts and other crates remain `0.1.0`.
 - There are no upstream tags or GitHub releases.
 - Consumers use floating git dependencies.
 - Distribution is source-based plus the AUR `xtop-git` package.

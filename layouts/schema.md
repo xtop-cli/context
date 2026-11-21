@@ -9,7 +9,7 @@ separate JSON Schema file; this document mirrors the code.
 - One layout per file.
 - The display name is the `name` field, not the file name.
 - Files use `.jsonc` or `.json`.
-- Built-in defaults live in `layouts/default/` and are embedded in the crate.
+- Default layout files live in `layouts/default/`; only Dashboard is embedded in the crate. The others are catalog assets.
 - User layouts live in the platform config directory under `layouts/`.
 - Names must be unique among defaults and user files; merging is exact and
   case-sensitive.
@@ -151,24 +151,24 @@ Re-serialization writes fixed lengths as numbers, percentages as strings,
 fill as `"*"`, then either `widget` with optional `options`, or `direction`
 with `areas`.
 
-## Embedded defaults
+## Base and catalog layouts
 
-The first seven embedded files are the mode-bound defaults in palette order.
-The three `detail_*` presets follow at slots 7-9. Extras are appended after
-the modes so mode indices never move.
+Only `dashboard.jsonc` is embedded. The other mode layouts and the three
+`detail_*` presets are catalog assets. They are resolved by display name;
+there is no fixed slot order for external files.
 
-| Slot | File | Name |
-|---|---|---|
-| 0 | `dashboard.jsonc` | `Dashboard` |
-| 1 | `vertical.jsonc` | `Vertical` |
-| 2 | `horizontal.jsonc` | `Horizontal` |
-| 3 | `cpu_focus.jsonc` | `CPU Focus` |
-| 4 | `memory_focus.jsonc` | `Memory Focus` |
-| 5 | `network_focus.jsonc` | `Network Focus` |
-| 6 | `process_focus.jsonc` | `Process Focus` |
-| 7 | `detail_dashboard.jsonc` | `Detail Dashboard` |
-| 8 | `detail_network.jsonc` | `Detail Network` |
-| 9 | `detail_processes.jsonc` | `Detail Processes` |
+| File | Name |
+|---|---|
+| `dashboard.jsonc` | `Dashboard` |
+| `vertical.jsonc` | `Vertical` |
+| `horizontal.jsonc` | `Horizontal` |
+| `cpu_focus.jsonc` | `CPU Focus` |
+| `memory_focus.jsonc` | `Memory Focus` |
+| `network_focus.jsonc` | `Network Focus` |
+| `process_focus.jsonc` | `Process Focus` |
+| `detail_dashboard.jsonc` | `Detail Dashboard` |
+| `detail_network.jsonc` | `Detail Network` |
+| `detail_processes.jsonc` | `Detail Processes` |
 
 Nine distinct widget ids are referenced across the defaults: `header`, `cpu`,
 `memory`, `storage`, `network`, `processes`, `disk_io`, `summary`,

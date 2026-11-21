@@ -5,7 +5,7 @@ providers from plugins through `CompositeProvider`.
 
 ## SysinfoProvider
 
-`src/providers/sysinfo/provider.rs` populates the shared data model:
+`src/core/providers/sysinfo/provider.rs` populates the shared data model:
 
 - CPU usage, frequency and per-core identity from sysinfo.
 - Governor and per-core temperature from platform probes.
@@ -98,7 +98,7 @@ so a plugin only overrides what it actually provides.
 
 ## Adding a platform probe
 
-1. Add the module under `src/providers/sysinfo/platform/<os>/`.
+1. Add the module under `src/core/providers/sysinfo/platform/<os>/`.
 2. Keep `cfg(target_os)` inside that tree; the audit fails otherwise.
 3. Return empty values on unsupported paths.
 4. Wire the probe into the shared provider.

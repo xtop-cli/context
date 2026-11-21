@@ -45,7 +45,7 @@ widgets/operations.md         Local CI and install flow.
 layouts/README.md             Layout crate overview.
 layouts/schema.md             Full JSONC schema and tiling rules.
 layouts/authoring.md          Writing, validating and installing layouts.
-layouts/defaults.md           The ten embedded layouts.
+layouts/defaults.md           The shipped layout files and base/catalog split.
 layouts/operations.md         Local CI and review checklist.
 
 plugins/README.md             Plugin workspace overview.
@@ -82,7 +82,7 @@ Hard rules
 ----------
 - Upstream source wins over this context.
 - Contracts live only in api.
-- All crates stay at 0.1.0; MSRV 1.87; Rust edition 2021.
+- Release 0.1.1: xtop, xtop-layout and widgets; contracts/remaining crates 0.1.0. MSRV 1.87; Rust edition 2021.
 - ratatui 0.30.2; serde 1; serde_json 1; no tokio/clap/chrono.
 - Rust repos keep local CI as the gate; CI is being added gradually.
 - Never store secrets, tokens, keys or personal data here.

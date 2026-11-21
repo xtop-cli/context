@@ -16,13 +16,15 @@ Seven built-in modes in fixed palette order:
 6. `Network Focus`
 7. `Process Focus`
 
-Three Detail presets are appended after the modes, not mapped to a mode:
+Only the primary `Dashboard` layout is embedded. The other mode layouts and
+the three Detail presets are catalog assets:
 
 - `Detail Dashboard`
 - `Detail Network`
 - `Detail Processes`
 
-The first seven slots must never be renumbered. Overrides keep a slot; new
+Layouts are resolved by display name; there is no fixed seven-slot contract
+for external layouts. Overrides replace an installed layout by name; new
 layouts append.
 
 ## Layout directories
@@ -155,7 +157,9 @@ packs, and are referenced in layouts by their manifest name.
 
 - `xtop layout check <file>` validates structure with the same parser used
   at runtime.
-- `xtop layout install <name>` fetches a community layout from the layouts
-  repository and copies it into the user directory.
+- `xtop layout download <name>` (or the `install` alias) fetches a layout
+  from the official catalog, verifies its checksum and writes it into the
+  user directory. `xtop config download --all` installs every catalog
+  layout and theme.
 - Unknown widget ids are not a parse error. They render an empty area and
   warn once per name.
