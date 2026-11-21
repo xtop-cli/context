@@ -81,7 +81,7 @@ does not crash the app; it simply does not appear.
 ## Activate
 
 - Copy the file into the user layouts directory and restart.
-- Cycle with `l`, or select it by name from the command palette.
+- Cycle with `l`, or select it by name from the command bar.
 - The active layout name is persisted in configuration.
 
 Seeded templates are copies of the defaults. Editing a seeded file is the

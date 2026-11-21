@@ -35,12 +35,14 @@ external/*.json        (runtime widgets)
 | `keybindings` | object | see below | action to key list |
 | `style` | object | classic | chart charset, borders, pack selection |
 | `effect` | string or absent | absent | `"fade"` activates the effect when compiled with `effects` |
+| `disabled_plugins` | array | `[]` | plugin ids disabled from the command bar; restored at startup |
 
 `layout_mode` values: `Dashboard`, `Vertical`, `Horizontal`, `CpuFocus`,
 `MemoryFocus`, `NetworkFocus`, `ProcessFocus`.
 
 Unknown keys and missing optional keys are ignored. A file that cannot be
-parsed falls back to defaults.
+parsed falls back to defaults. Existing configs that bind `/` to `search` are
+migrated in memory to `command_palette` on load; the next save persists it.
 
 ## Example
 
@@ -64,8 +66,8 @@ parsed falls back to defaults.
     "next_layout": ["l"],
     "toggle_fullscreen": ["f"],
     "cycle_fullscreen": ["F"],
-    "search": ["/"],
-    "command_palette": ["ctrl+p", "ctrl+P"],
+    "search": ["ctrl+f"],
+    "command_palette": ["ctrl+p", "ctrl+P", "/"],
     "cancel": ["escape"],
     "kill_process": ["k"],
     "process_up": ["up"],
@@ -77,7 +79,8 @@ parsed falls back to defaults.
     "borders": "native",
     "pack": null,
     "widgets": {}
-  }
+  },
+  "disabled_plugins": []
 }
 ```
 
@@ -107,8 +110,10 @@ Supported spellings:
 Actions: `quit`, `help`, `next_theme`, `prev_theme`, `next_layout`,
 `toggle_fullscreen`, `cycle_fullscreen`, `search`, `command_palette`,
 `cancel`, `kill_process`, `process_up`, `process_down`, `cycle_sort`.
+Defaults include `search = ["ctrl+f"]` and
+`command_palette = ["ctrl+p", "ctrl+P", "/"]`.
 
-`ctrl+p` also works as a hardcoded fallback for the command palette, which
+`ctrl+p` and `/` also work as hardcoded fallbacks for the command bar, which
 covers terminals that report the modifier with different casing.
 
 ## Style

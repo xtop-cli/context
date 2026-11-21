@@ -30,10 +30,15 @@ Plugins never depend on kernel types. They see state only through
 - `handle_key` dispatches a key and returns true if a plugin consumed it.
 - `collect_data_providers` only includes plugins with `ReadSystemInfo`.
 - `collect_widgets` only includes plugins with `RenderWidgets`.
-- `execute` finds a plugin by id and calls its action API.
+- `execute` finds an enabled plugin by id and calls its action API.
+- `set_enabled` toggles a plugin, calls `on_enable`/`on_disable` and refreshes
+  providers/widgets; the disabled ids are persisted in `config.json`.
 - `disable_all` calls `on_disable` at shutdown.
 
 A failing plugin is logged and does not crash the kernel.
+
+The TUI command bar (`/` or `ctrl+p`) exposes a Plugins page that toggles the
+compiled plugins; the selection is restored on the next start.
 
 ## Capabilities
 

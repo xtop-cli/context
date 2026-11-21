@@ -25,7 +25,8 @@ repositories.
 - Layout modes plus three Detail presets, custom layouts and fullscreen mode; Dashboard is embedded and the rest are catalog assets.
 - Configurable alert thresholds and keybindings.
 - Persistent configuration, base asset seeding and catalog-driven theme/layout downloads.
-- Plugin system with capability enforcement.
+- Plugin system with capability enforcement and command-bar enable/disable.
+- Command bar (`/` or `ctrl+p`) with themes, layouts, plugins and process filtering.
 - MCP server for AI agents.
 - Headless CLI monitoring (`status`, `processes`, `watch`, `info`, `doctor`) with JSON output.
 - Self-update through xpm, pacman, cargo or the standalone binary installer (`xtop update`).
@@ -69,8 +70,8 @@ cargo run --release
 | `t` / `T` | next / previous theme |
 | `l` | next layout |
 | `f` / `F` | toggle / cycle fullscreen |
-| `/` | process search |
-| `ctrl+p` | command palette |
+| `/` / `ctrl+p` | command bar |
+| `ctrl+f` | process filter |
 | `k` | kill selected process |
 | `s` | cycle process sort column |
 

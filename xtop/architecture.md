@@ -93,7 +93,7 @@ src/
     run.rs                 TUI run loop
     input.rs               key mapping and mode dispatch
     actions.rs             keybinding action -> state mutations
-    palette.rs             command palette state logic
+    palette.rs             command bar state logic
     widget_state.rs        WidgetState implementation for AppState
     screen.rs              top-level composition
     terminal.rs            platform backend facade
@@ -114,7 +114,7 @@ src/
     overlay/
       mod.rs
       help/mod.rs          help overlay
-      palette/mod.rs       command palette overlay
+      palette/mod.rs       command bar overlay
     effects/
       mod.rs
       off.rs               no-op host
@@ -165,7 +165,7 @@ see the same sample.
    - base pack.
 5. Per-instance layout `options` are set on `AppState` for the duration of
    the render call and exposed through `WidgetState::widget_options`.
-6. Overlays (help, search, command palette) draw above the layout.
+6. Overlays (help, process filter, command bar) draw above the layout.
 7. If the `effects` feature is enabled and the config selects an effect, the
    effect rewrites the buffer before flush.
 8. Unknown widget names produce one stderr warning per name per process.
@@ -217,7 +217,7 @@ return empty values rather than fabricated data.
 - active widget options for the current render call;
 - the uid-to-name map;
 - shared view-control state consumed by the TUI (fullscreen, input mode,
-  command palette).
+  command bar).
 
 TUI-only action dispatch and palette logic live under `tui/`, not in core.
 

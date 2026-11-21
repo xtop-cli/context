@@ -39,8 +39,10 @@ before acting on it.
   base `x` theme is embedded; the other eleven are catalog assets.
 - Seven layout modes plus three Detail presets, user and community layouts.
 - Widget packs with per-widget and per-instance options.
-- Command palette, help overlay, process search, sorting with direction,
-  process termination and fullscreen mode.
+- Command bar (`/` or `ctrl+p`) with Themes, Layouts, Plugins and
+  Processes/filter pages; plugin enable/disable is persisted. Also help
+  overlay, process filtering, sorting with direction, process termination
+  and fullscreen mode.
 - Plugin system with capability enforcement and error isolation.
 - MCP extension exposed as `xtop mcp`.
 - Optional effects and runtime widget hosts.

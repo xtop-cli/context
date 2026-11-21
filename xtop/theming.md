@@ -100,7 +100,7 @@ Twelve themes:
 ## Switching themes
 
 - `t` and `T` cycle forward and backward in the TUI.
-- The command palette offers a Themes page.
+- The command bar offers a Themes page.
 - `xtop --change-theme <name>` (or `xtop theme set <name>`) persists the
   theme; running instances follow it within one tick. `--ct` remains a
   deprecated alias.
